@@ -1,0 +1,146 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>日本語 SRS — Grammar Drills</title>
+<meta name="description" content="Self-graded spaced-repetition drills for N2 grammar.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="日本語SRS">
+<meta name="theme-color" content="#1b1b1f">
+<link rel="stylesheet" href="style.css">
+
+<div class="app">
+
+  <!-- HOME -->
+  <section id="screen-home" class="screen active">
+    <header class="topbar">
+      <h1>日本語 SRS</h1>
+      <p class="subtitle">Grammar drills, self-graded</p>
+    </header>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-num" id="stat-due">0</div>
+        <div class="stat-label">due today</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-new">0</div>
+        <div class="stat-label">new</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-total">0</div>
+        <div class="stat-label">total points</div>
+      </div>
+    </div>
+
+    <button id="btn-start-session" class="btn btn-primary btn-large">Start session</button>
+
+    <div class="home-links">
+      <button id="btn-browse" class="btn btn-ghost">Browse grammar list</button>
+      <button id="btn-settings" class="btn btn-ghost">Settings</button>
+    </div>
+  </section>
+
+  <!-- SESSION -->
+  <section id="screen-session" class="screen">
+    <div class="progress-bar-track">
+      <div id="session-progress-bar" class="progress-bar-fill"></div>
+    </div>
+    <div class="session-topline">
+      <span id="session-progress-label">1 / 8</span>
+      <button id="btn-end-session" class="btn-text">End session</button>
+    </div>
+
+    <div class="card">
+      <h2 id="card-title" class="card-title"></h2>
+      <p id="card-meaning" class="card-meaning"></p>
+
+      <div id="card-examples" class="card-examples"></div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Translate into natural Japanese:</div>
+        <div id="card-prompt" class="prompt-text"></div>
+      </div>
+
+      <div id="answer-input-wrap" class="answer-input-wrap">
+        <textarea id="answer-input" placeholder="あなたの答え…" rows="2"></textarea>
+      </div>
+
+      <button id="btn-show-answer" class="btn btn-primary">Show answer</button>
+
+      <div id="answer-reveal" class="answer-reveal hidden">
+        <div class="model-answer-box">
+          <div class="model-label">Model answer</div>
+          <div id="model-answer" class="model-answer-text"></div>
+          <div id="model-note" class="model-note"></div>
+        </div>
+
+        <div class="grade-question">How did your answer compare?</div>
+        <div id="grade-buttons" class="grade-buttons hidden">
+          <button id="btn-grade-natural" class="btn btn-grade grade-natural">✅ Natural</button>
+          <button id="btn-grade-awkward" class="btn btn-grade grade-awkward">🔁 Awkward</button>
+          <button id="btn-grade-wrong" class="btn btn-grade grade-wrong">❌ Wrong</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="screen-summary" class="screen">
+    <header class="topbar">
+      <h1>Session done</h1>
+      <p class="subtitle"><span id="summary-total">0</span> drills reviewed</p>
+    </header>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-num" id="summary-natural">0</div>
+        <div class="stat-label">✅ natural</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="summary-awkward">0</div>
+        <div class="stat-label">🔁 awkward</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="summary-wrong">0</div>
+        <div class="stat-label">❌ wrong</div>
+      </div>
+    </div>
+
+    <button id="btn-summary-done" class="btn btn-primary btn-large">Done</button>
+  </section>
+
+  <!-- BROWSE -->
+  <section id="screen-browse" class="screen">
+    <header class="topbar">
+      <h1>Grammar list</h1>
+      <button id="btn-back-from-browse" class="btn-text">← Back</button>
+    </header>
+    <div id="browse-list" class="browse-list"></div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section id="screen-settings" class="screen">
+    <header class="topbar">
+      <h1>Settings</h1>
+    </header>
+
+    <label class="field-label" for="input-session-size">Drills per session</label>
+    <input id="input-session-size" class="field-input" type="number" min="1" max="30">
+
+    <label class="field-label" for="input-new-per-day">New grammar points per day</label>
+    <input id="input-new-per-day" class="field-input" type="number" min="0" max="20">
+
+    <div class="settings-actions">
+      <button id="btn-save-settings" class="btn btn-primary">Save</button>
+      <button id="btn-cancel-settings" class="btn btn-ghost">Cancel</button>
+    </div>
+
+    <hr class="divider">
+
+    <button id="btn-reset-progress" class="btn btn-danger">Reset all progress</button>
+  </section>
+
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
