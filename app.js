@@ -170,6 +170,16 @@ function renderExample(ex) {
     </div>`;
 }
 
+function renderVocabItem(v) {
+  const jaHtml = v.reading && v.reading !== v.jp
+    ? `<ruby>${v.jp}<rt>${v.reading}</rt></ruby>`
+    : v.jp;
+  return `<div class="vocab-item">
+      <span class="vocab-ja">${jaHtml}</span>
+      <span class="vocab-en">${v.en}</span>
+    </div>`;
+}
+
 function renderCard() {
   const item = sessionQueue[sessionIndex];
   document.getElementById("session-progress-label").textContent =
@@ -183,15 +193,35 @@ function renderCard() {
     item.examples.map(renderExample).join("");
   document.getElementById("card-prompt").textContent = item.prompt;
 
+  document.getElementById("card-details").classList.add("hidden");
+  document.getElementById("btn-toggle-details").textContent = "View more ▾";
+
   document.getElementById("answer-input").value = "";
   document.getElementById("answer-reveal").classList.add("hidden");
   document.getElementById("answer-input-wrap").classList.remove("hidden");
   document.getElementById("btn-show-answer").classList.remove("hidden");
   document.getElementById("grade-buttons").classList.add("hidden");
 
+  document.getElementById("vocab-list").innerHTML =
+    (item.vocab || []).map(renderVocabItem).join("");
+  document.getElementById("vocab-reveal").classList.add("hidden");
+  document.getElementById("btn-show-vocab").classList.remove("hidden");
+
   const modelHtml = applyFurigana(item.modelAnswer, item.modelFurigana);
   document.getElementById("model-answer").innerHTML = modelHtml;
   document.getElementById("model-note").textContent = item.note;
+}
+
+function toggleDetails() {
+  const details = document.getElementById("card-details");
+  const btn = document.getElementById("btn-toggle-details");
+  const isHidden = details.classList.toggle("hidden");
+  btn.textContent = isHidden ? "View more ▾" : "Hide ▴";
+}
+
+function revealVocab() {
+  document.getElementById("vocab-reveal").classList.remove("hidden");
+  document.getElementById("btn-show-vocab").classList.add("hidden");
 }
 
 function startSession() {
@@ -305,6 +335,8 @@ document.getElementById("btn-cancel-settings").addEventListener("click", () => {
 });
 document.getElementById("btn-reset-progress").addEventListener("click", resetProgress);
 
+document.getElementById("btn-toggle-details").addEventListener("click", toggleDetails);
+document.getElementById("btn-show-vocab").addEventListener("click", revealVocab);
 document.getElementById("btn-show-answer").addEventListener("click", revealAnswer);
 document.getElementById("btn-grade-natural").addEventListener("click", () => gradeAndAdvance("natural"));
 document.getElementById("btn-grade-awkward").addEventListener("click", () => gradeAndAdvance("awkward"));

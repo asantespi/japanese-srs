@@ -165,8 +165,16 @@ html, body {
 }
 .card-title {
   font-size: 24px;
-  margin: 0 0 4px;
+  margin: 0 0 8px;
 }
+.btn-toggle-details {
+  display: block;
+  padding: 4px 0;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.card-details { margin-bottom: 4px; }
 .card-meaning {
   color: var(--text-muted);
   font-size: 14px;
@@ -214,6 +222,46 @@ ruby rt {
 }
 
 .answer-input-wrap { margin-bottom: 12px; }
+
+.reveal-buttons-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.btn-reveal { margin-top: 0; }
+.reveal-buttons-row .btn { flex: 1; width: auto; }
+
+.vocab-reveal { margin-bottom: 14px; }
+.vocab-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.vocab-list {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px 14px;
+}
+.vocab-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+  font-size: 15px;
+}
+.vocab-item:first-child { border-top: none; }
+.vocab-ja { line-height: 1.8; }
+.vocab-en {
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: right;
+  white-space: nowrap;
+}
 #answer-input {
   width: 100%;
   font-size: 16px;

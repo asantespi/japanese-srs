@@ -52,9 +52,13 @@
 
     <div class="card">
       <h2 id="card-title" class="card-title"></h2>
-      <p id="card-meaning" class="card-meaning"></p>
 
-      <div id="card-examples" class="card-examples"></div>
+      <button id="btn-toggle-details" class="btn-text btn-toggle-details">View more ▾</button>
+
+      <div id="card-details" class="card-details hidden">
+        <p id="card-meaning" class="card-meaning"></p>
+        <div id="card-examples" class="card-examples"></div>
+      </div>
 
       <div class="prompt-box">
         <div class="prompt-label">Translate into natural Japanese:</div>
@@ -65,7 +69,15 @@
         <textarea id="answer-input" placeholder="あなたの答え…" rows="2"></textarea>
       </div>
 
-      <button id="btn-show-answer" class="btn btn-primary">Show answer</button>
+      <div class="reveal-buttons-row">
+        <button id="btn-show-vocab" class="btn btn-ghost btn-reveal">Show vocab</button>
+        <button id="btn-show-answer" class="btn btn-primary btn-reveal">Show answer</button>
+      </div>
+
+      <div id="vocab-reveal" class="vocab-reveal hidden">
+        <div class="vocab-label">Vocab for this answer</div>
+        <div id="vocab-list" class="vocab-list"></div>
+      </div>
 
       <div id="answer-reveal" class="answer-reveal hidden">
         <div class="model-answer-box">

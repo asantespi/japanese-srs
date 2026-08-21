@@ -1,6 +1,6 @@
 // Grammar pool, extracted from the user's N2 chapter PDFs.
 // Each item: id, title (pattern), meaning (1 line), examples (2), prompt (EN),
-// modelAnswer (JA), modelFurigana, note.
+// modelAnswer (JA), modelFurigana, vocab (words needed to build the answer), note.
 // furigana pairs: [[word, reading], ...] applied via applyFurigana().
 
 const GRAMMAR_POOL = [
@@ -13,6 +13,11 @@ const GRAMMAR_POOL = [
   prompt: "Write a notice: \"Closed today due to a company trip.\"",
   modelAnswer: "本日は社員旅行につき、休業いたします。",
   modelFurigana: [["本日","ほんじつ"],["社員旅行","しゃいんりょこう"],["休業","きゅうぎょう"]],
+  vocab: [
+    { jp: "本日", reading: "ほんじつ", en: "today (formal)" },
+    { jp: "社員旅行", reading: "しゃいんりょこう", en: "company trip" },
+    { jp: "休業", reading: "きゅうぎょう", en: "closed for business" }
+  ],
   note: "Formal/written — signs and notices, not casual speech."
 },
 {
@@ -24,6 +29,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"This restaurant is popular regardless of nationality.\"",
   modelAnswer: "この店は国籍を問わず、人気がある。",
   modelFurigana: [["国籍","こくせき"],["人気","にんき"]],
+  vocab: [
+    { jp: "国籍", reading: "こくせき", en: "nationality" },
+    { jp: "人気がある", reading: "にんきがある", en: "to be popular" }
+  ],
   note: "Often paired with words like 昼夜, 男女, 有無."
 },
 {
@@ -35,6 +44,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"There's no way he would lie.\"",
   modelAnswer: "彼に限って、うそをつくはずがない。",
   modelFurigana: [],
+  vocab: [
+    { jp: "うそをつく", reading: "うそをつく", en: "to tell a lie" },
+    { jp: "はずがない", reading: "はずがない", en: "there's no way that..." }
+  ],
   note: "に限り = only (formal); に限って〜ない = strong belief 'not THIS person'."
 },
 {
@@ -46,6 +59,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"The price changes depending on the season.\"",
   modelAnswer: "値段は季節に応じて変わる。",
   modelFurigana: [["値段","ねだん"],["季節","きせつ"]],
+  vocab: [
+    { jp: "値段", reading: "ねだん", en: "price" },
+    { jp: "季節", reading: "きせつ", en: "season" },
+    { jp: "変わる", reading: "かわる", en: "to change" }
+  ],
   note: "Pairs with words like 状況、年齢、能力、希望."
 },
 {
@@ -57,6 +75,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"This gym is open regardless of the weather.\"",
   modelAnswer: "このジムは天気にかかわらず、営業している。",
   modelFurigana: [["天気","てんき"],["営業","えいぎょう"]],
+  vocab: [
+    { jp: "天気", reading: "てんき", en: "weather" },
+    { jp: "営業している", reading: "えいぎょうしている", en: "to be open for business" }
+  ],
   note: "Similar to を問わず but often with V-る/V-ない opposite pairs."
 },
 {
@@ -68,6 +90,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"In modern society, this problem is important.\"",
   modelAnswer: "現代社会において、この問題は重要だ。",
   modelFurigana: [["現代社会","げんだいしゃかい"],["重要","じゅうよう"]],
+  vocab: [
+    { jp: "現代社会", reading: "げんだいしゃかい", en: "modern society" },
+    { jp: "重要", reading: "じゅうよう", en: "important" }
+  ],
   note: "Formal register; における + noun modifies the following noun."
 },
 {
@@ -79,6 +105,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Please turn off your phone when entering the theater.\"",
   modelAnswer: "劇場に入る際は、携帯電話の電源を切ってください。",
   modelFurigana: [["劇場","げきじょう"],["携帯電話","けいたいでんわ"],["電源","でんげん"]],
+  vocab: [
+    { jp: "劇場", reading: "げきじょう", en: "theater" },
+    { jp: "携帯電話", reading: "けいたいでんわ", en: "cell phone" },
+    { jp: "電源を切る", reading: "でんげんをきる", en: "to turn off the power" }
+  ],
   note: "際して is more formal/written than 際に."
 },
 {
@@ -90,6 +121,10 @@ const GRAMMAR_POOL = [
   prompt: "Write a rule: \"Do not run in the hallway.\"",
   modelAnswer: "廊下を走らないこと。",
   modelFurigana: [["廊下","ろうか"]],
+  vocab: [
+    { jp: "廊下", reading: "ろうか", en: "hallway" },
+    { jp: "走る", reading: "はしる", en: "to run" }
+  ],
   note: "Only for written rules/instructions, never spoken."
 },
 {
@@ -101,6 +136,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I haven't smoked since I quit two years ago.\"",
   modelAnswer: "2年前にやめて以来、たばこを吸っていない。",
   modelFurigana: [],
+  vocab: [
+    { jp: "やめる", reading: "やめる", en: "to quit" },
+    { jp: "たばこを吸う", reading: "たばこをすう", en: "to smoke" }
+  ],
   note: "The state continues unchanged until now."
 },
 {
@@ -112,6 +151,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Many countries, starting with China, took part in the event.\"",
   modelAnswer: "中国をはじめ、多くの国がそのイベントに参加した。",
   modelFurigana: [["参加","さんか"]],
+  vocab: [
+    { jp: "中国", reading: "ちゅうごく", en: "China" },
+    { jp: "多くの国", reading: "おおくのくに", en: "many countries" },
+    { jp: "参加する", reading: "さんかする", en: "to participate" }
+  ],
   note: "Gives a representative example, implying more of the same kind."
 },
 {
@@ -123,6 +167,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I grew up under my grandmother's guidance.\"",
   modelAnswer: "私は祖母の指導のもとで育った。",
   modelFurigana: [["祖母","そぼ"],["指導","しどう"],["育った","そだった"]],
+  vocab: [
+    { jp: "祖母", reading: "そぼ", en: "grandmother" },
+    { jp: "指導", reading: "しどう", en: "guidance" },
+    { jp: "育つ", reading: "そだつ", en: "to grow up" }
+  ],
   note: "Under a person's influence, or under certain conditions/situation."
 },
 {
@@ -134,6 +183,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"This shop is popular with locals, not to mention tourists.\"",
   modelAnswer: "この店は観光客はもとより、地元の人にも人気だ。",
   modelFurigana: [["観光客","かんこうきゃく"],["地元","じもと"]],
+  vocab: [
+    { jp: "観光客", reading: "かんこうきゃく", en: "tourist" },
+    { jp: "地元の人", reading: "じもとのひと", en: "local person" }
+  ],
   note: "More formal/written than はもちろん."
 },
 {
@@ -145,6 +198,10 @@ const GRAMMAR_POOL = [
   prompt: "Say casually: \"People change as they get older, you know.\"",
   modelAnswer: "人は年を取れば変わるもんだよ。",
   modelFurigana: [["年を取れば","としをとれば"]],
+  vocab: [
+    { jp: "年を取る", reading: "としをとる", en: "to get older" },
+    { jp: "変わる", reading: "かわる", en: "to change" }
+  ],
   note: "Sounds preachy — don't use with people above you in status."
 },
 {
@@ -156,6 +213,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"When learning a language, practice is essential.\"",
   modelAnswer: "言語を学ぶ上で、練習が欠かせない。",
   modelFurigana: [["言語","げんご"],["練習","れんしゅう"],["欠かせない","かかせない"]],
+  vocab: [
+    { jp: "言語", reading: "げんご", en: "language" },
+    { jp: "練習", reading: "れんしゅう", en: "practice" },
+    { jp: "欠かせない", reading: "かかせない", en: "indispensable" }
+  ],
   note: "Followed by an important/necessary/should-type comment."
 },
 {
@@ -167,6 +229,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Although it's small, this apartment is very comfortable.\"",
   modelAnswer: "このアパートは狭いながらも、とても快適だ。",
   modelFurigana: [["狭い","せまい"],["快適","かいてき"]],
+  vocab: [
+    { jp: "狭い", reading: "せまい", en: "small / cramped" },
+    { jp: "快適", reading: "かいてき", en: "comfortable" }
+  ],
   note: "Different from ながら (simultaneous action) — this shows contrast."
 },
 {
@@ -178,6 +244,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"This club has international exchange as its purpose.\"",
   modelAnswer: "このクラブは国際交流を目的としている。",
   modelFurigana: [["国際交流","こくさいこうりゅう"]],
+  vocab: [
+    { jp: "国際交流", reading: "こくさいこうりゅう", en: "international exchange" },
+    { jp: "目的", reading: "もくてき", en: "purpose" }
+  ],
   note: "Common with 目的・中心・対象・手本・前提."
 },
 {
@@ -189,6 +259,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"That trip became the trigger for me to study abroad.\"",
   modelAnswer: "あの旅行がきっかけで、留学することになった。",
   modelFurigana: [["留学","りゅうがく"]],
+  vocab: [
+    { jp: "旅行", reading: "りょこう", en: "trip" },
+    { jp: "留学する", reading: "りゅうがくする", en: "to study abroad" }
+  ],
   note: "契機 = bigger/more formal version, often historical/social."
 },
 {
@@ -200,6 +274,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Since I decided to run the marathon, I'll train properly.\"",
   modelAnswer: "マラソンに出ると決めたからには、ちゃんとトレーニングする。",
   modelFurigana: [["決めた","きめた"]],
+  vocab: [
+    { jp: "マラソンに出る", reading: "マラソンにでる", en: "to enter a marathon" },
+    { jp: "決める", reading: "きめる", en: "to decide" },
+    { jp: "トレーニングする", reading: "トレーニングする", en: "to train" }
+  ],
   note: "からには = you chose it; 以上は = your existing role/situation."
 },
 {
@@ -211,6 +290,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"It's not that I dislike natto, but I rarely eat it.\"",
   modelAnswer: "納豆が嫌いなわけではないが、あまり食べない。",
   modelFurigana: [["納豆","なっとう"],["嫌い","きらい"]],
+  vocab: [
+    { jp: "納豆", reading: "なっとう", en: "natto" },
+    { jp: "嫌い", reading: "きらい", en: "disliked" }
+  ],
   note: "Softly denies a 100% assumption."
 },
 {
@@ -222,6 +305,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"He finished the marathon without stopping.\"",
   modelAnswer: "彼は止まることなくマラソンを完走した。",
   modelFurigana: [["完走","かんそう"]],
+  vocab: [
+    { jp: "止まる", reading: "とまる", en: "to stop" },
+    { jp: "完走する", reading: "かんそうする", en: "to finish running / complete a race" }
+  ],
   note: "Formal, written style; stiffer than ないで."
 },
 {
@@ -233,6 +320,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Despite the rain, many people came to the event.\"",
   modelAnswer: "雨にもかかわらず、たくさんの人がイベントに来た。",
   modelFurigana: [],
+  vocab: [
+    { jp: "雨", reading: "あめ", en: "rain" },
+    { jp: "イベント", reading: "イベント", en: "event" }
+  ],
   note: "Different from にかかわらず (regardless of) — this means 'despite'."
 },
 {
@@ -244,6 +335,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I went to Osaka as a tourist.\"",
   modelAnswer: "観光客として大阪に行った。",
   modelFurigana: [["観光客","かんこうきゃく"]],
+  vocab: [
+    { jp: "観光客", reading: "かんこうきゃく", en: "tourist" },
+    { jp: "大阪", reading: "おおさか", en: "Osaka" }
+  ],
   note: "States a role, qualification, or category."
 },
 {
@@ -255,6 +350,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"As long as you're healthy, you can keep working.\"",
   modelAnswer: "健康な限り、働き続けられる。",
   modelFurigana: [["健康","けんこう"]],
+  vocab: [
+    { jp: "健康", reading: "けんこう", en: "healthy" },
+    { jp: "働き続ける", reading: "はたらきつづける", en: "to keep working" }
+  ],
   note: "限りでは (with 知る/聞く/調べる) = 'as far as I know/heard'."
 },
 {
@@ -266,6 +365,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Since it's raining, we have no choice but to cancel the picnic.\"",
   modelAnswer: "雨だから、ピクニックを中止せざるを得ない。",
   modelFurigana: [],
+  vocab: [
+    { jp: "ピクニック", reading: "ピクニック", en: "picnic" },
+    { jp: "中止する", reading: "ちゅうしする", en: "to cancel" }
+  ],
   note: "する → せざるを得ない (irregular)."
 },
 {
@@ -277,6 +380,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Just because it's expensive doesn't mean it's delicious.\"",
   modelAnswer: "高ければおいしいというものではない。",
   modelFurigana: [["高ければ","たかければ"]],
+  vocab: [
+    { jp: "高い", reading: "たかい", en: "expensive" },
+    { jp: "おいしい", reading: "おいしい", en: "delicious" }
+  ],
   note: "Gently corrects a common assumption."
 },
 {
@@ -288,6 +395,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Price aside, this hotel's service is amazing.\"",
   modelAnswer: "値段はともかく、このホテルのサービスは最高だ。",
   modelFurigana: [["値段","ねだん"]],
+  vocab: [
+    { jp: "値段", reading: "ねだん", en: "price" },
+    { jp: "サービス", reading: "サービス", en: "service" },
+    { jp: "最高", reading: "さいこう", en: "the best" }
+  ],
   note: "Sets one topic aside to focus on another."
 },
 {
@@ -299,6 +411,9 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"If you eat that much, you might get sick.\"",
   modelAnswer: "そんなに食べたら、病気になりかねないよ。",
   modelFurigana: [["病気","びょうき"]],
+  vocab: [
+    { jp: "病気になる", reading: "びょうきになる", en: "to get sick" }
+  ],
   note: "Only for negative/risky outcomes."
 },
 {
@@ -310,6 +425,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"This isn't a hobby, it's more like a job.\"",
   modelAnswer: "これは趣味というより、仕事のようなものだ。",
   modelFurigana: [["趣味","しゅみ"]],
+  vocab: [
+    { jp: "趣味", reading: "しゅみ", en: "hobby" },
+    { jp: "仕事", reading: "しごと", en: "job / work" }
+  ],
   note: "You correct your own first word choice."
 },
 {
@@ -321,6 +440,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"The deadline is tomorrow, so I can't just keep sleeping.\"",
   modelAnswer: "締め切りは明日だから、寝てはいられない。",
   modelFurigana: [["締め切り","しめきり"]],
+  vocab: [
+    { jp: "締め切り", reading: "しめきり", en: "deadline" },
+    { jp: "寝る", reading: "ねる", en: "to sleep" }
+  ],
   note: "て form ~で becomes じゃいられない."
 },
 {
@@ -332,6 +455,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"While thinking about the future, I chose this job.\"",
   modelAnswer: "将来のことを考えつつ、この仕事を選んだ。",
   modelFurigana: [["将来","しょうらい"],["選んだ","えらんだ"]],
+  vocab: [
+    { jp: "将来", reading: "しょうらい", en: "future" },
+    { jp: "選ぶ", reading: "えらぶ", en: "to choose" }
+  ],
   note: "More formal/written than ながら, same meaning."
 },
 {
@@ -343,6 +470,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"This festival is held for three days.\"",
   modelAnswer: "このお祭りは3日間にわたって行われる。",
   modelFurigana: [["祭り","まつり"]],
+  vocab: [
+    { jp: "祭り", reading: "まつり", en: "festival" },
+    { jp: "行われる", reading: "おこなわれる", en: "to be held" }
+  ],
   note: "Covers the WHOLE range, not just part of it."
 },
 {
@@ -354,6 +485,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"It will be cold from tonight through tomorrow morning.\"",
   modelAnswer: "今夜から明日の朝にかけて、寒くなるでしょう。",
   modelFurigana: [["今夜","こんや"]],
+  vocab: [
+    { jp: "今夜", reading: "こんや", en: "tonight" },
+    { jp: "寒くなる", reading: "さむくなる", en: "to get cold" }
+  ],
   note: "Approximate range, not exact endpoints — pairs with から."
 },
 {
@@ -365,6 +500,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Along with the population increase, traffic has also increased.\"",
   modelAnswer: "人口の増加にともなって、交通量も増えた。",
   modelFurigana: [["人口","じんこう"],["増加","ぞうか"],["交通量","こうつうりょう"]],
+  vocab: [
+    { jp: "人口", reading: "じんこう", en: "population" },
+    { jp: "増加", reading: "ぞうか", en: "increase" },
+    { jp: "交通量", reading: "こうつうりょう", en: "traffic volume" }
+  ],
   note: "One event causes/brings a connected change."
 },
 {
@@ -376,6 +516,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I want to travel together with my family.\"",
   modelAnswer: "家族とともに旅行したい。",
   modelFurigana: [["家族","かぞく"]],
+  vocab: [
+    { jp: "家族", reading: "かぞく", en: "family" },
+    { jp: "旅行する", reading: "りょこうする", en: "to travel" }
+  ],
   note: "Three uses: together with; not only X but Y; change alongside change."
 },
 {
@@ -387,6 +531,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I'll contact you as soon as I arrive.\"",
   modelAnswer: "到着次第、ご連絡します。",
   modelFurigana: [["到着","とうちゃく"],["連絡","れんらく"]],
+  vocab: [
+    { jp: "到着する", reading: "とうちゃくする", en: "to arrive" },
+    { jp: "連絡する", reading: "れんらくする", en: "to contact" }
+  ],
   note: "Formal/polite; used in business and announcements."
 },
 {
@@ -398,6 +546,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I've only met him once — since then, nothing.\"",
   modelAnswer: "彼とは一度会ったきり、会っていない。",
   modelFurigana: [["一度","いちど"]],
+  vocab: [
+    { jp: "一度", reading: "いちど", en: "once" },
+    { jp: "会う", reading: "あう", en: "to meet" }
+  ],
   note: "The situation stayed frozen since that one event."
 },
 {
@@ -409,6 +561,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I'm so busy I can't even think about vacation.\"",
   modelAnswer: "忙しくて、休暇どころじゃないよ。",
   modelFurigana: [["休暇","きゅうか"]],
+  vocab: [
+    { jp: "忙しい", reading: "いそがしい", en: "busy" },
+    { jp: "休暇", reading: "きゅうか", en: "vacation" }
+  ],
   note: "Stronger than 'I don't want to' — reality blocks it completely."
 },
 {
@@ -420,6 +576,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I bought the book, but I haven't read it yet.\"",
   modelAnswer: "本を買ったものの、まだ読んでいない。",
   modelFurigana: [],
+  vocab: [
+    { jp: "買う", reading: "かう", en: "to buy" },
+    { jp: "読む", reading: "よむ", en: "to read" }
+  ],
   note: "The first fact is real, but the expected result didn't follow."
 },
 {
@@ -431,6 +591,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"To my surprise, the train arrived early.\"",
   modelAnswer: "驚いたことに、電車が早く着いた。",
   modelFurigana: [["驚いた","おどろいた"]],
+  vocab: [
+    { jp: "驚く", reading: "おどろく", en: "to be surprised" },
+    { jp: "電車", reading: "でんしゃ", en: "train" },
+    { jp: "着く", reading: "つく", en: "to arrive" }
+  ],
   note: "Only with emotion words: 驚いた・困った・うれしい・悲しい・不思議な・残念な."
 },
 {
@@ -442,6 +607,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"For a beginner, he plays very well.\"",
   modelAnswer: "初心者にしては、彼はとても上手に弾く。",
   modelFurigana: [["初心者","しょしんしゃ"],["弾く","ひく"]],
+  vocab: [
+    { jp: "初心者", reading: "しょしんしゃ", en: "beginner" },
+    { jp: "弾く", reading: "ひく", en: "to play (an instrument)" }
+  ],
   note: "Only used when reality differs from the expectation set by the category."
 },
 {
@@ -453,6 +622,10 @@ const GRAMMAR_POOL = [
   prompt: "Say to yourself: \"How happy I was when I passed the exam!\"",
   modelAnswer: "試験に合格したとき、どんなにうれしかったことか。",
   modelFurigana: [["試験","しけん"],["合格","ごうかく"]],
+  vocab: [
+    { jp: "試験", reading: "しけん", en: "exam" },
+    { jp: "合格する", reading: "ごうかくする", en: "to pass" }
+  ],
   note: "Often with どんなに・どれだけ・どれほど, said almost to oneself."
 },
 {
@@ -464,6 +637,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"As long as you have motivation, anyone can do this job.\"",
   modelAnswer: "やる気さえあれば、誰でもこの仕事ができる。",
   modelFurigana: [],
+  vocab: [
+    { jp: "やる気", reading: "やるき", en: "motivation" },
+    { jp: "誰でも", reading: "だれでも", en: "anyone" }
+  ],
   note: "Only ONE condition is necessary — everything else is fine."
 },
 {
@@ -475,6 +652,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I don't know his address, so there's no way to send it.\"",
   modelAnswer: "彼の住所を知らないから、送りようがない。",
   modelFurigana: [["住所","じゅうしょ"]],
+  vocab: [
+    { jp: "住所", reading: "じゅうしょ", en: "address" },
+    { jp: "送る", reading: "おくる", en: "to send" }
+  ],
   note: "You want to, but it's physically/logically impossible."
 },
 {
@@ -486,6 +667,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"After thinking about it for a long time, I ended up quitting the job.\"",
   modelAnswer: "長い間悩んだあげく、仕事を辞めることにした。",
   modelFurigana: [["悩んだ","なやんだ"],["辞める","やめる"]],
+  vocab: [
+    { jp: "悩む", reading: "なやむ", en: "to agonize / worry" },
+    { jp: "辞める", reading: "やめる", en: "to quit" }
+  ],
   note: "Usually a negative or exhausting result after effort."
 },
 {
@@ -497,6 +682,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"You shouldn't judge people by their appearance.\"",
   modelAnswer: "人を見た目で判断するもんじゃない。",
   modelFurigana: [["見た目","みため"],["判断","はんだん"]],
+  vocab: [
+    { jp: "見た目", reading: "みため", en: "appearance" },
+    { jp: "判断する", reading: "はんだんする", en: "to judge" }
+  ],
   note: "Softer than a direct order — like advice from an elder."
 },
 {
@@ -508,6 +697,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"It might not fit, but let's at least try wearing it.\"",
   modelAnswer: "似合わないかもしれないけど、着るだけ着てみよう。",
   modelFurigana: [["似合わない","にあわない"]],
+  vocab: [
+    { jp: "似合う", reading: "にあう", en: "to suit / look good on" },
+    { jp: "着る", reading: "きる", en: "to wear" }
+  ],
   note: "Same verb repeated: V-るだけV-てみる."
 },
 {
@@ -519,6 +712,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Just because I overslept, I missed the important meeting.\"",
   modelAnswer: "寝坊したばかりに、大事な会議に遅れてしまった。",
   modelFurigana: [["寝坊した","ねぼうした"],["大事","だいじ"],["会議","かいぎ"],["遅れて","おくれて"]],
+  vocab: [
+    { jp: "寝坊する", reading: "ねぼうする", en: "to oversleep" },
+    { jp: "大事な会議", reading: "だいじなかいぎ", en: "important meeting" },
+    { jp: "遅れる", reading: "おくれる", en: "to be late" }
+  ],
   note: "Always a regret — one small cause, one bad result."
 },
 {
@@ -530,6 +728,9 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"You don't have to worry that much.\"",
   modelAnswer: "そんなに心配することはないよ。",
   modelFurigana: [["心配","しんぱい"]],
+  vocab: [
+    { jp: "心配する", reading: "しんぱいする", en: "to worry" }
+  ],
   note: "Reassuring, casual advice."
 },
 {
@@ -541,6 +742,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Compared to last year, this year is much colder.\"",
   modelAnswer: "去年に比べて、今年はずっと寒い。",
   modelFurigana: [["去年","きょねん"]],
+  vocab: [
+    { jp: "去年", reading: "きょねん", en: "last year" },
+    { jp: "今年", reading: "ことし", en: "this year" },
+    { jp: "寒い", reading: "さむい", en: "cold" }
+  ],
   note: "Same meaning as より, slightly more formal."
 },
 {
@@ -552,6 +758,9 @@ const GRAMMAR_POOL = [
   prompt: "Say to yourself: \"There's no way I'll lose to him!\"",
   modelAnswer: "彼になんか負けるものか。",
   modelFurigana: [["負ける","まける"]],
+  vocab: [
+    { jp: "負ける", reading: "まける", en: "to lose" }
+  ],
   note: "Strong emotional denial — colloquial もんか in speech."
 },
 {
@@ -563,6 +772,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Supporting each other is what a team is all about.\"",
   modelAnswer: "お互いに支え合うのがチームというものだ。",
   modelFurigana: [["支え合う","ささえあう"]],
+  vocab: [
+    { jp: "お互いに", reading: "おたがいに", en: "to each other" },
+    { jp: "支え合う", reading: "ささえあう", en: "to support each other" }
+  ],
   note: "States a general truth, not just your personal view."
 },
 {
@@ -574,6 +787,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"It's precisely because I care about you that I'm saying this.\"",
   modelAnswer: "あなたのことを思えばこそ、こう言っているんだ。",
   modelFurigana: [],
+  vocab: [
+    { jp: "思う", reading: "おもう", en: "to think of / care about" },
+    { jp: "言う", reading: "いう", en: "to say" }
+  ],
   note: "Stronger, more emphatic than からこそ."
 },
 {
@@ -585,6 +802,9 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"It's not that I can't cook, but I don't do it often.\"",
   modelAnswer: "料理ができないことはないが、あまりしない。",
   modelFurigana: [["料理","りょうり"]],
+  vocab: [
+    { jp: "料理ができる", reading: "りょうりができる", en: "to be able to cook" }
+  ],
   note: "Softens a direct answer — common in polite conversation."
 },
 {
@@ -596,6 +816,10 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"Please take as many as you want.\"",
   modelAnswer: "ほしいだけ持っていってください。",
   modelFurigana: [],
+  vocab: [
+    { jp: "ほしい", reading: "ほしい", en: "want" },
+    { jp: "持っていく", reading: "もっていく", en: "to take / carry away" }
+  ],
   note: "V-できる/たい/ほしい + だけ = to the max limit."
 },
 {
@@ -607,6 +831,10 @@ const GRAMMAR_POOL = [
   prompt: "Say casually, giving an excuse: \"Because I was busy!\"",
   modelAnswer: "だって、忙しかったんだもん。",
   modelFurigana: [],
+  vocab: [
+    { jp: "だって", reading: "だって", en: "because (casual)" },
+    { jp: "忙しい", reading: "いそがしい", en: "busy" }
+  ],
   note: "Very casual, often used by women/children as an excuse."
 },
 {
@@ -618,6 +846,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I promised, so I can't cancel now.\"",
   modelAnswer: "約束したから、今さらキャンセルするわけにはいかない。",
   modelFurigana: [["約束","やくそく"]],
+  vocab: [
+    { jp: "約束する", reading: "やくそくする", en: "to promise" },
+    { jp: "今さら", reading: "いまさら", en: "now, at this point" },
+    { jp: "キャンセルする", reading: "キャンセルする", en: "to cancel" }
+  ],
   note: "Social/moral obligation blocks the action (or its opposite)."
 },
 {
@@ -629,6 +862,11 @@ const GRAMMAR_POOL = [
   prompt: "Say formally: \"Reservations are accepted online only.\"",
   modelAnswer: "ご予約はオンラインのみの受け付けとなります。",
   modelFurigana: [["予約","よやく"]],
+  vocab: [
+    { jp: "予約", reading: "よやく", en: "reservation" },
+    { jp: "オンライン", reading: "オンライン", en: "online" },
+    { jp: "受け付け", reading: "うけつけ", en: "acceptance / reception" }
+  ],
   note: "Stiffer, more formal than だけ — signs and notices."
 },
 {
@@ -640,6 +878,11 @@ const GRAMMAR_POOL = [
   prompt: "Say: \"I clean the room as if it were my own home.\"",
   modelAnswer: "自分の家のつもりで部屋を掃除する。",
   modelFurigana: [["掃除","そうじ"]],
+  vocab: [
+    { jp: "自分の家", reading: "じぶんのいえ", en: "one's own home" },
+    { jp: "部屋", reading: "へや", en: "room" },
+    { jp: "掃除する", reading: "そうじする", en: "to clean" }
+  ],
   note: "Imagining yourself as something you're not, to adopt that feeling/attitude."
 }
 ];
