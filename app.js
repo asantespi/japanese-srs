@@ -2,6 +2,7 @@
 
 const STORAGE_KEY = "jpSrsState_v1";
 const SETTINGS_KEY = "jpSrsSettings_v1";
+const DAILY_NEW_KEY = "jpSrsDailyNew_v1";
 
 // Interval ladder in days. Index 0 = brand new (due immediately).
 // Matches the original spec (0, 2, 5, 10) then extends gently for long-term retention.
@@ -44,6 +45,24 @@ function saveSettings(settings) {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
 }
 
+// Tracks which item ids have already been introduced as "new" today, so the
+// newPerDay budget holds across multiple sessions on the same calendar day.
+function loadDailyNewLog() {
+  const today = todayStr();
+  try {
+    const raw = localStorage.getItem(DAILY_NEW_KEY);
+    const parsed = raw ? JSON.parse(raw) : null;
+    if (parsed && parsed.date === today) return parsed;
+  } catch (e) {
+    // fall through to a fresh log
+  }
+  return { date: today, ids: [] };
+}
+
+function saveDailyNewLog(log) {
+  localStorage.setItem(DAILY_NEW_KEY, JSON.stringify(log));
+}
+
 function getItemState(state, id) {
   return state[id] || { level: 0, due: null, seen: false };
 }
@@ -63,23 +82,31 @@ function applyFurigana(sentence, pairs) {
 
 function buildQueue(pool, state, settings) {
   const today = todayStr();
+  const dailyLog = loadDailyNewLog();
   const due = [];
-  const fresh = [];
+  const freshIntroducedToday = [];
+  const freshNotYetIntroduced = [];
 
   pool.forEach((item) => {
     const s = getItemState(state, item.id);
     if (!s.seen) {
-      fresh.push(item);
+      if (dailyLog.ids.indexOf(item.id) !== -1) {
+        // Already shown as new earlier today but not graded yet — keep
+        // surfacing it before spending any more of today's new budget.
+        freshIntroducedToday.push(item);
+      } else {
+        freshNotYetIntroduced.push(item);
+      }
     } else if (s.due && s.due <= today) {
       due.push({ item, due: s.due });
     }
   });
 
   due.sort((a, b) => (a.due < b.due ? -1 : 1));
-  let queue = due.map((d) => d.item);
+  let queue = due.map((d) => d.item).concat(freshIntroducedToday);
 
-  const newSlots = Math.max(0, settings.newPerDay);
-  queue = queue.concat(fresh.slice(0, newSlots));
+  const newSlots = Math.max(0, settings.newPerDay - dailyLog.ids.length);
+  queue = queue.concat(freshNotYetIntroduced.slice(0, newSlots));
 
   if (queue.length > settings.sessionSize) {
     queue = queue.slice(0, settings.sessionSize);
@@ -87,15 +114,22 @@ function buildQueue(pool, state, settings) {
   return queue;
 }
 
-function countDueAndNew(pool, state) {
+function countDueAndNew(pool, state, settings) {
   const today = todayStr();
-  let due = 0, fresh = 0;
+  const dailyLog = loadDailyNewLog();
+  let due = 0, freshNotYetIntroduced = 0;
   pool.forEach((item) => {
     const s = getItemState(state, item.id);
-    if (!s.seen) fresh++;
-    else if (s.due && s.due <= today) due++;
+    if (!s.seen) {
+      if (dailyLog.ids.indexOf(item.id) !== -1) due++;
+      else freshNotYetIntroduced++;
+    } else if (s.due && s.due <= today) {
+      due++;
+    }
   });
-  return { due, fresh, total: pool.length };
+  const newRemaining = Math.max(0, settings.newPerDay - dailyLog.ids.length);
+  const newToShow = Math.min(freshNotYetIntroduced, newRemaining);
+  return { due, newToShow, total: pool.length };
 }
 
 // ---- Grading ----
@@ -146,9 +180,9 @@ function showScreen(name) {
 }
 
 function renderHome() {
-  const counts = countDueAndNew(GRAMMAR_POOL, appState);
+  const counts = countDueAndNew(GRAMMAR_POOL, appState, appSettings);
   document.getElementById("stat-due").textContent = counts.due;
-  document.getElementById("stat-new").textContent = Math.min(counts.fresh, appSettings.newPerDay);
+  document.getElementById("stat-new").textContent = counts.newToShow;
   document.getElementById("stat-total").textContent = counts.total;
 
   const startBtn = document.getElementById("btn-start-session");
@@ -233,6 +267,21 @@ function startSession() {
     showScreen("home");
     return;
   }
+
+  // Lock in today's new-item budget: any not-yet-seen item entering the
+  // queue now counts against newPerDay for the rest of today, even if the
+  // session ends before it's graded.
+  const dailyLog = loadDailyNewLog();
+  let changed = false;
+  sessionQueue.forEach((item) => {
+    const s = getItemState(appState, item.id);
+    if (!s.seen && dailyLog.ids.indexOf(item.id) === -1) {
+      dailyLog.ids.push(item.id);
+      changed = true;
+    }
+  });
+  if (changed) saveDailyNewLog(dailyLog);
+
   showScreen("session");
   renderCard();
 }
@@ -309,6 +358,7 @@ function resetProgress() {
   if (!confirm("This will erase all your SRS progress on this device. Continue?")) return;
   appState = {};
   saveState(appState);
+  localStorage.removeItem(DAILY_NEW_KEY);
   renderHome();
   showScreen("home");
 }
