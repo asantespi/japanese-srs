@@ -117,10 +117,11 @@ function buildQueue(pool, state, settings) {
 function countDueAndNew(pool, state, settings) {
   const today = todayStr();
   const dailyLog = loadDailyNewLog();
-  let due = 0, freshNotYetIntroduced = 0;
+  let due = 0, freshNotYetIntroduced = 0, notReviewed = 0;
   pool.forEach((item) => {
     const s = getItemState(state, item.id);
     if (!s.seen) {
+      notReviewed++;
       if (dailyLog.ids.indexOf(item.id) !== -1) due++;
       else freshNotYetIntroduced++;
     } else if (s.due && s.due <= today) {
@@ -129,7 +130,7 @@ function countDueAndNew(pool, state, settings) {
   });
   const newRemaining = Math.max(0, settings.newPerDay - dailyLog.ids.length);
   const newToShow = Math.min(freshNotYetIntroduced, newRemaining);
-  return { due, newToShow, total: pool.length };
+  return { due, newToShow, total: pool.length, notReviewed };
 }
 
 // ---- Grading ----
@@ -183,7 +184,7 @@ function renderHome() {
   const counts = countDueAndNew(GRAMMAR_POOL, appState, appSettings);
   document.getElementById("stat-due").textContent = counts.due;
   document.getElementById("stat-new").textContent = counts.newToShow;
-  document.getElementById("stat-total").textContent = counts.total;
+  document.getElementById("stat-total").textContent = `${counts.notReviewed}/${counts.total}`;
 
   const startBtn = document.getElementById("btn-start-session");
   const queuePreview = buildQueue(GRAMMAR_POOL, appState, appSettings);
