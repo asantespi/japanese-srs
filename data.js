@@ -884,5 +884,302 @@ const GRAMMAR_POOL = [
     { jp: "掃除する", reading: "そうじする", en: "to clean" }
   ],
   note: "Imagining yourself as something you're not, to adopt that feeling/attitude."
+},
+{
+  id: 59, title: "〜から見ると／からいうと／からすると", meaning: "judging from ~ / from the standpoint of ~",
+  examples: [
+    { jp: "便利さという点から見ると、やはり田舎より都会のほうが暮らしやすい。", furigana: [["田舎","いなか"],["都会","とかい"]], en: "Looking at it from the point of convenience, the city is still easier to live in than the countryside." },
+    { jp: "彼の考え方からすると、どんなアイデアも実行できなければ無駄だということになる。", furigana: [["実行","じっこう"],["無駄","むだ"]], en: "From his way of thinking, any idea is useless if it can't be carried out." }
+  ],
+  prompt: "Say: \"Judging from the current economic situation, this plan is difficult.\"",
+  modelAnswer: "今の経済状況から見ると、この計画は難しい。",
+  modelFurigana: [["経済状況","けいざいじょうきょう"],["計画","けいかく"],["難しい","むずかしい"]],
+  vocab: [
+    { jp: "経済状況", reading: "けいざいじょうきょう", en: "economic situation" },
+    { jp: "計画", reading: "けいかく", en: "plan" }
+  ],
+  note: "からいうと and からすると are near-synonyms of から見ると — all mean 'taking ~ as the basis for judging'."
+},
+{
+  id: 60, title: "〜その一方で", meaning: "while (on the other hand) — two contrasting situations about one topic",
+  examples: [
+    { jp: "仕事を求めて都会に出る若者がいる一方、故郷に戻って就職する若者もいる。", furigana: [["都会","とかい"],["若者","わかもの"],["故郷","こきょう"],["就職","しゅうしょく"]], en: "While there are young people who go to the city looking for work, there are also young people who return to their hometown to find employment." },
+    { jp: "インターネットの普及で、簡単に情報が手に入るようになった。しかしその一方で、個人情報の流出という問題も出てきた。", furigana: [["普及","ふきゅう"],["情報","じょうほう"],["個人情報","こじんじょうほう"],["流出","りゅうしゅつ"]], en: "Thanks to the spread of the internet, it became easy to get information. However, at the same time, the problem of personal information leaks has also emerged." }
+  ],
+  prompt: "Say: \"This medicine is effective, but on the other hand it has side effects.\"",
+  modelAnswer: "この薬は効果がある一方で、副作用もある。",
+  modelFurigana: [["薬","くすり"],["効果","こうか"],["副作用","ふくさよう"]],
+  vocab: [
+    { jp: "効果がある", reading: "こうかがある", en: "to be effective" },
+    { jp: "副作用", reading: "ふくさよう", en: "side effect" }
+  ],
+  note: "Describes two different — often opposite — sides of one situation."
+},
+{
+  id: 61, title: "〜ことから", meaning: "because of the fact that ~ (reason for a name, judgment, or cause)",
+  examples: [
+    { jp: "このサツマイモは中が赤いことから、紅イモと呼ばれています。", furigana: [["紅","べに"]], en: "Because the inside of this sweet potato is red, it's called a \"red potato.\"" },
+    { jp: "チンパンジーは道具が使えることから、人間に最も近いと考えられている。", furigana: [], en: "Because chimpanzees can use tools, they are thought to be closest to humans." }
+  ],
+  prompt: "Say: \"Because this town is by the sea, fishing is thriving here.\"",
+  modelAnswer: "この町は海に近いことから、漁業が盛んだ。",
+  modelFurigana: [["町","まち"],["海","うみ"],["漁業","ぎょぎょう"],["盛ん","さかん"]],
+  vocab: [
+    { jp: "漁業", reading: "ぎょぎょう", en: "fishing industry" },
+    { jp: "盛んだ", reading: "さかんだ", en: "to be thriving" }
+  ],
+  note: "Gives the reason behind a name, judgment, or how something came to be."
+},
+{
+  id: 62, title: "〜のみならず", meaning: "not only ~ but also (adds a bigger/second fact)",
+  examples: [
+    { jp: "現在、日本のコンビニは若者のみならず、あらゆる世代の人々に様々な目的で利用されている。", furigana: [["若者","わかもの"],["世代","せだい"],["様々","さまざま"],["目的","もくてき"]], en: "Nowadays, convenience stores in Japan are used not only by young people but by people of all generations for various purposes." },
+    { jp: "難民問題は人道的な問題であるのみならず、近隣諸国にも影響を及ぼす政治的な側面もある。", furigana: [["難民問題","なんみんもんだい"],["人道的","じんどうてき"],["影響","えいきょう"]], en: "The refugee problem is not only a humanitarian issue, but also has a political aspect that affects neighboring countries." }
+  ],
+  prompt: "Say: \"This app is useful not only for students but also for working adults.\"",
+  modelAnswer: "このアプリは学生のみならず、社会人にも役に立つ。",
+  modelFurigana: [["学生","がくせい"],["社会人","しゃかいじん"],["役に立つ","やくにたつ"]],
+  vocab: [
+    { jp: "社会人", reading: "しゃかいじん", en: "working adult" },
+    { jp: "役に立つ", reading: "やくにたつ", en: "to be useful" }
+  ],
+  note: "More formal/written than 〜だけでなく."
+},
+{
+  id: 63, title: "〜といった", meaning: "such as ~ (giving representative examples)",
+  examples: [
+    { jp: "くるみやアーモンドといったナッツ類を毎日食べると、記憶力がよくなるそうです。", furigana: [["類","るい"],["記憶力","きおくりょく"]], en: "They say that eating nuts such as walnuts and almonds every day improves memory." },
+    { jp: "仏教は、中国、日本、韓国、タイといったアジアの国で広く信仰されている。", furigana: [["仏教","ぶっきょう"],["韓国","かんこく"],["信仰","しんこう"]], en: "Buddhism is widely believed in Asian countries such as China, Japan, South Korea, and Thailand." }
+  ],
+  prompt: "Say: \"Fruits such as apples and oranges are good for the body.\"",
+  modelAnswer: "りんごやオレンジといった果物は体にいい。",
+  modelFurigana: [["果物","くだもの"],["体","からだ"]],
+  vocab: [
+    { jp: "果物", reading: "くだもの", en: "fruit" },
+    { jp: "体にいい", reading: "からだにいい", en: "good for the body" }
+  ],
+  note: "Same meaning as 〜など, giving a couple of typical examples."
+},
+{
+  id: 64, title: "〜にしたがって／につれて", meaning: "as ~ changes, so does something else",
+  examples: [
+    { jp: "暑くなるにしたがって、体調を崩す人が増えた。", furigana: [["体調","たいちょう"]], en: "As it got hotter, more people started falling ill." },
+    { jp: "留学生活が長くなるにつれて、国のことを思い出すことが少なくなったような気がする。", furigana: [], en: "As study abroad life went on longer, I feel like I started thinking about my home country less." }
+  ],
+  prompt: "Say: \"As the population increases, food shortages become a problem.\"",
+  modelAnswer: "人口が増えるにしたがって、食料不足が問題になる。",
+  modelFurigana: [["人口","じんこう"],["食料不足","しょくりょうぶそく"]],
+  vocab: [
+    { jp: "人口", reading: "じんこう", en: "population" },
+    { jp: "食料不足", reading: "しょくりょうぶそく", en: "food shortage" }
+  ],
+  note: "につれて is interchangeable with にしたがって in most cases."
+},
+{
+  id: 65, title: "〜得る(うる)／〜得ない(えない)", meaning: "can possibly / cannot possibly (formal, used in essays and reports)",
+  examples: [
+    { jp: "普通の人が宇宙へ行ける日が来るなんて、100年前には想像し得なかったことだ。", furigana: [["宇宙","うちゅう"],["想像","そうぞう"]], en: "That a day would come when ordinary people could go to space was something unimaginable 100 years ago." },
+    { jp: "マーケティング調査の結果によっては、発売時期の変更もあり得る。", furigana: [["調査","ちょうさ"],["発売時期","はつばいじき"],["変更","へんこう"]], en: "Depending on the marketing research results, a change in the release date is possible." }
+  ],
+  prompt: "Say formally: \"Such a mistake is unthinkable.\"",
+  modelAnswer: "そのようなミスは考えられ得ない。",
+  modelFurigana: [],
+  vocab: [
+    { jp: "考えられる", reading: "かんがえられる", en: "to be conceivable" }
+  ],
+  note: "うる is a literary alternative to える in the plain affirmative only; the negative is always 〜えない."
+},
+{
+  id: 66, title: "〜に反して", meaning: "contrary to (expectations/wishes) — the opposite result happened",
+  examples: [
+    { jp: "今回の経済政策は国民の期待に反して、まったく効果がなかった。", furigana: [["経済政策","けいざいせいさく"],["国民","こくみん"],["効果","こうか"]], en: "Contrary to the public's expectations, this economic policy had no effect at all." },
+    { jp: "彼は、親の意向に反して、戦場カメラマンになった。", furigana: [["意向","いこう"],["戦場","せんじょう"]], en: "Against his parents' wishes, he became a war photographer." }
+  ],
+  prompt: "Say: \"Contrary to my expectations, the test was easy.\"",
+  modelAnswer: "私の予想に反して、試験は簡単だった。",
+  modelFurigana: [["予想","よそう"],["試験","しけん"],["簡単","かんたん"]],
+  vocab: [
+    { jp: "予想", reading: "よそう", en: "expectation" },
+    { jp: "試験", reading: "しけん", en: "exam" }
+  ],
+  note: "Pairs with words like 予想・期待・意向."
+},
+{
+  id: 67, title: "〜に関して／に関する", meaning: "regarding / about (a topic being discussed or researched)",
+  examples: [
+    { jp: "修理に関するお問い合わせはサービスセンターまでお電話かメールでご連絡ください。", furigana: [["修理","しゅうり"],["問い合わせ","といあわせ"]], en: "For inquiries regarding repairs, please contact the service center by phone or email." },
+    { jp: "友人は地震の予知に関して研究論文を書いたそうだ。", furigana: [["地震","じしん"],["予知","よち"],["研究論文","けんきゅうろんぶん"]], en: "I heard that my friend wrote a research paper regarding earthquake prediction." }
+  ],
+  prompt: "Say: \"Regarding this project, there are still many questions.\"",
+  modelAnswer: "このプロジェクトに関して、まだ多くの疑問がある。",
+  modelFurigana: [["疑問","ぎもん"]],
+  vocab: [
+    { jp: "疑問", reading: "ぎもん", en: "question / doubt" }
+  ],
+  note: "に関して connects to a verb/clause; に関する modifies a following noun directly."
+},
+{
+  id: 68, title: "〜反面", meaning: "on the other hand (one thing has two contrasting sides)",
+  examples: [
+    { jp: "IT機器は多機能化が進んで、便利な反面、操作が複雑すぎて使いこなせない人が増えている。", furigana: [["機器","きき"],["多機能化","たきのうか"],["複雑","ふくざつ"]], en: "As IT devices become more multifunctional, while they are convenient, the number of people who can't use them because the operation is too complex is increasing." },
+    { jp: "国民の長寿は喜ばしい反面、国の財政負担が増えるという問題もある。", furigana: [["長寿","ちょうじゅ"],["財政負担","ざいせいふたん"]], en: "While the population's longevity is something to be happy about, there is also the problem that the country's financial burden increases." }
+  ],
+  prompt: "Say: \"Working from home is convenient, but on the other hand you feel lonely.\"",
+  modelAnswer: "在宅勤務は便利な反面、孤独を感じる。",
+  modelFurigana: [["在宅勤務","ざいたくきんむ"],["孤独","こどく"]],
+  vocab: [
+    { jp: "在宅勤務", reading: "ざいたくきんむ", en: "working from home" },
+    { jp: "孤独を感じる", reading: "こどくをかんじる", en: "to feel lonely" }
+  ],
+  note: "Very close to 〜一方で, but 反面 always frames the two sides as good vs bad."
+},
+{
+  id: 69, title: "〜上(じょう)", meaning: "from the point of view of ~ (theoretical, historical, health, etc.)",
+  examples: [
+    { jp: "お札にはその国の歴史上の人物の顔が描かれていることが多い。", furigana: [["札","さつ"],["歴史上","れきしじょう"],["人物","じんぶつ"]], en: "Banknotes often have the face of a historically significant person from that country depicted on them." },
+    { jp: "あの２人は表面上は親しそうに見えるけど、本当はあまり仲がよくないんだ。", furigana: [["表面上","ひょうめんじょう"],["仲","なか"]], en: "Those two look close on the surface, but in reality they don't get along very well." }
+  ],
+  prompt: "Say: \"This medicine has no problems from a safety standpoint.\"",
+  modelAnswer: "この薬は安全上、問題がない。",
+  modelFurigana: [["薬","くすり"],["安全上","あんぜんじょう"],["問題","もんだい"]],
+  vocab: [
+    { jp: "安全上", reading: "あんぜんじょう", en: "from a safety standpoint" },
+    { jp: "問題がない", reading: "もんだいがない", en: "to have no problem" }
+  ],
+  note: "Attaches directly to nouns like 理論・教育・法律・歴史・表面 — no particle in between."
+},
+{
+  id: 70, title: "〜つつある", meaning: "is gradually ~ing (a change happening right now, not finished)",
+  examples: [
+    { jp: "異常気象の影響が世界各地に広がりつつある。", furigana: [["異常気象","いじょうきしょう"],["影響","えいきょう"],["各地","かくち"]], en: "The effects of abnormal weather are gradually spreading across the world." },
+    { jp: "日本銀行は、国内の景気について、緩やかに回復しつつあると発表した。", furigana: [["景気","けいき"],["緩やかに","ゆるやかに"],["回復","かいふく"]], en: "The Bank of Japan announced that the domestic economy is gradually recovering." }
+  ],
+  prompt: "Say: \"The number of foreign tourists is gradually increasing.\"",
+  modelAnswer: "外国人観光客の数が増えつつある。",
+  modelFurigana: [["外国人観光客","がいこくじんかんこうきゃく"],["数","かず"]],
+  vocab: [
+    { jp: "外国人観光客", reading: "がいこくじんかんこうきゃく", en: "foreign tourist" },
+    { jp: "増える", reading: "ふえる", en: "to increase" }
+  ],
+  note: "More formal than 〜ている; often used in news reports about ongoing change."
+},
+{
+  id: 71, title: "〜に限らず", meaning: "not limited to ~ (applies more broadly than just this one example)",
+  examples: [
+    { jp: "環境対策のためにも、夏に限らず、年間を通して節電を心がけるべきだ。", furigana: [["環境対策","かんきょうたいさく"],["年間","ねんかん"],["節電","せつでん"]], en: "For the sake of environmental measures, one should be mindful of saving electricity throughout the year, not just in summer." },
+    { jp: "水の問題は特定の地域に限らず、世界的な問題になるだろう。", furigana: [["特定","とくてい"],["地域","ちいき"],["世界的","せかいてき"]], en: "The water problem will likely become a global issue, not limited to specific regions." }
+  ],
+  prompt: "Say: \"Not limited to Japan, this custom also exists in other countries.\"",
+  modelAnswer: "日本に限らず、この習慣はほかの国にもある。",
+  modelFurigana: [["習慣","しゅうかん"]],
+  vocab: [
+    { jp: "習慣", reading: "しゅうかん", en: "custom" }
+  ],
+  note: "Similar meaning to 〜だけでなく, but more written/formal."
+},
+{
+  id: 72, title: "尊敬語・謙譲語（ビジネス敬語）", meaning: "special honorific/humble business vocabulary (お見えになる, おいでになる, 承る, 拝借する, 存じる, まいる...)",
+  examples: [
+    { jp: "横浜からお越しの大山様、佐藤様がお待ちですので、１階の受付までお越しください。", furigana: [["越","こ"],["受付","うけつけ"]], en: "Mr./Ms. Oyama and Mr./Ms. Sato, who came from Yokohama, are waiting for you, so please come to the reception desk on the 1st floor." },
+    { jp: "本日のご予約は山本が承りました。ありがとうございました。", furigana: [["山本","やまもと"],["承","うけたまわ"]], en: "Yamamoto took your reservation for today. Thank you very much." }
+  ],
+  prompt: "Say politely (humble form): \"I will borrow this material.\"",
+  modelAnswer: "この資料を拝借いたします。",
+  modelFurigana: [["資料","しりょう"],["拝借","はいしゃく"]],
+  vocab: [
+    { jp: "資料", reading: "しりょう", en: "material / document" },
+    { jp: "拝借する", reading: "はいしゃくする", en: "to (humbly) borrow" }
+  ],
+  note: "尊敬語 raises the other person's action (お見えになる=来る); 謙譲語 lowers your own (拝借する=借りる)."
+},
+{
+  id: 73, title: "お／ご〜願えますでしょうか", meaning: "could you please... (polite business request, = お/ご〜いただく／ください)",
+  examples: [
+    { jp: "事故の状況をもう一度詳しくお話し願えますか。", furigana: [["事故","じこ"],["状況","じょうきょう"],["詳しく","くわしく"]], en: "Could you tell me the details of the accident's situation once more?" },
+    { jp: "見学ご希望の方は、この書類にご記入願います。", furigana: [["見学","けんがく"],["希望","きぼう"],["書類","しょるい"],["記入","きにゅう"]], en: "Those who wish to tour, please fill out this document." }
+  ],
+  prompt: "Ask politely in business style: \"Could you please wait a moment?\"",
+  modelAnswer: "少々お待ち願えますか。",
+  modelFurigana: [["少々","しょうしょう"]],
+  vocab: [
+    { jp: "少々", reading: "しょうしょう", en: "a moment / a little" }
+  ],
+  note: "お+V-ます stem+願います for verbs; ご+noun+願います for nouns."
+},
+{
+  id: 74, title: "お／ご〜申し上げる", meaning: "to (humbly) do something for someone — more polite than お／ご〜する",
+  examples: [
+    { jp: "新校舎建設のため、ご寄付をお願い申し上げます。", furigana: [["新校舎","しんこうしゃ"],["建設","けんせつ"],["寄付","きふ"]], en: "For the construction of the new school building, we humbly ask for your donation." },
+    { jp: "被害に遭われた方に心からお見舞い申し上げます。", furigana: [["被害","ひがい"],["遭","あ"],["見舞","みま"]], en: "We express our heartfelt sympathy to those who were affected." }
+  ],
+  prompt: "Say formally: \"I will explain about today's schedule.\"",
+  modelAnswer: "本日の日程についてご説明申し上げます。",
+  modelFurigana: [["本日","ほんじつ"],["日程","にってい"],["説明","せつめい"]],
+  vocab: [
+    { jp: "日程", reading: "にってい", en: "schedule" },
+    { jp: "説明する", reading: "せつめいする", en: "to explain" }
+  ],
+  note: "This means 'do' something for someone, not 'say' — even with words like 説明 (explain)."
+},
+{
+  id: 75, title: "〜ばと思います", meaning: "I would appreciate it if you could... / I wish (soft, polite request or wish)",
+  examples: [
+    { jp: "こちらの事情をご理解いただければと思います。", furigana: [["事情","じじょう"],["理解","りかい"]], en: "I would appreciate it if you could understand the circumstances here." },
+    { jp: "皆さんのご意見をお聞かせくださればと思います。", furigana: [["皆","みな"],["意見","いけん"]], en: "I would appreciate it if everyone could share their opinions." }
+  ],
+  prompt: "Say politely: \"I would appreciate it if you could reply by tomorrow.\"",
+  modelAnswer: "明日までにお返事いただければと思います。",
+  modelFurigana: [["返事","へんじ"]],
+  vocab: [
+    { jp: "返事", reading: "へんじ", en: "reply" }
+  ],
+  note: "Softer and more polite than a direct request — common in business emails."
+},
+{
+  id: 76, title: "〜につきましては／にとりましては／におきましては／としまして／に関しまして", meaning: "polite/formal versions of について・にとって・において・として・に関して",
+  examples: [
+    { jp: "発売の時期につきましては、現在検討中でございます。", furigana: [["発売","はつばい"],["時期","じき"],["検討中","けんとうちゅう"]], en: "Regarding the release timing, it is currently under consideration." },
+    { jp: "わが社といたしましては、今回の契約はぜひ進めたいと考えております。", furigana: [["契約","けいやく"]], en: "As for our company, we would definitely like to proceed with this contract." }
+  ],
+  prompt: "Say formally: \"Regarding the price, we will contact you separately.\"",
+  modelAnswer: "価格につきましては、別途ご連絡いたします。",
+  modelFurigana: [["価格","かかく"],["別途","べっと"],["連絡","れんらく"]],
+  vocab: [
+    { jp: "価格", reading: "かかく", en: "price" },
+    { jp: "別途", reading: "べっと", en: "separately" }
+  ],
+  note: "Dressed-up 'business suit' versions of casual connectors — use in formal writing and speeches."
 }
 ];
+
+// ---- Chapters ----
+// Each grammar item's chapter is derived from its id range below, so the
+// existing 58 items (chapters 1-6) never needed per-item edits. Adding a new
+// chapter later just means appending new GRAMMAR_POOL items and one new
+// range here.
+const CHAPTERS = [
+  { id: 1, title: "Chapter 1 — Formal notices & conditions" },
+  { id: 2, title: "Chapter 2 — Business & narrative connectors" },
+  { id: 3, title: "Chapter 3 — Roles, limits & obligations" },
+  { id: 4, title: "Chapter 4 — Simultaneous change & duration" },
+  { id: 5, title: "Chapter 5 — Emotion, exception & attempt" },
+  { id: 6, title: "Chapter 6 — Regret, defiance & comparison" },
+  { id: 7, title: "Chapter 7 — Perspective & gradual change" },
+  { id: 8, title: "Chapter 8 — Business keigo" }
+];
+
+const CHAPTER_RANGES = [
+  { chapter: 1, min: 1, max: 8 },
+  { chapter: 2, min: 9, max: 21 },
+  { chapter: 3, min: 22, max: 29 },
+  { chapter: 4, min: 30, max: 35 },
+  { chapter: 5, min: 36, max: 46 },
+  { chapter: 6, min: 47, max: 58 },
+  { chapter: 7, min: 59, max: 71 },
+  { chapter: 8, min: 72, max: 76 }
+];
+
+function getChapterForId(id) {
+  const r = CHAPTER_RANGES.find((r) => id >= r.min && id <= r.max);
+  return r ? r.chapter : null;
+}

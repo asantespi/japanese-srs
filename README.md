@@ -43,11 +43,31 @@ server-side code — everything runs client-side.)
 5. Open that URL on your phone's browser. On iOS Safari / Android Chrome you can add it to your
    home screen (Share → Add to Home Screen) for an app-like icon.
 
+## Study scope
+
+On the home screen, **Study scope** lets you review either:
+
+- **All chapters (random)** — due/new items are pulled from every chapter, mixed together (the
+  original behavior), or
+- **A specific chapter** — the session only pulls from that chapter's grammar points.
+
+The chapter list and the Browse screen labels always reflect every chapter currently in `data.js`.
+
 ## Editing the grammar content
 
-All grammar points live in `data.js` as a plain array (`GRAMMAR_POOL`). Each entry has a title,
-meaning, two example sentences, a production prompt, a model answer, and a short note. Add new
-chapters by appending new objects to that array — no other code changes needed.
+All grammar points live in `data.js` as a plain array (`GRAMMAR_POOL`), and each item's `id` is
+looked up against `CHAPTER_RANGES` to find its chapter — items themselves don't carry a `chapter`
+field. Each entry has a title, meaning, two example sentences, a production prompt, a model
+answer, and a short note.
+
+To add a new chapter:
+
+1. Append the new grammar items to the end of `GRAMMAR_POOL`, continuing the `id` sequence.
+2. Add one entry to `CHAPTERS` with the new chapter's number and a short title.
+3. Add one range to `CHAPTER_RANGES` covering the new items' `id`s.
+
+No other code changes are needed — the home screen's scope selector and the Browse screen picks
+up new chapters automatically.
 
 ## Resetting progress
 

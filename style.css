@@ -41,7 +41,7 @@ html, body {
 .app {
   max-width: 480px;
   margin: 0 auto;
-  padding: 20px 16px 40px;
+  padding: calc(20px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom));
   min-height: 100vh;
 }
 

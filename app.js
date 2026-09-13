@@ -3,6 +3,7 @@
 const STORAGE_KEY = "jpSrsState_v1";
 const SETTINGS_KEY = "jpSrsSettings_v1";
 const DAILY_NEW_KEY = "jpSrsDailyNew_v1";
+const SCOPE_KEY = "jpSrsScope_v1";
 
 // Interval ladder in days. Index 0 = brand new (due immediately).
 // Matches the original spec (0, 2, 5, 10) then extends gently for long-term retention.
@@ -43,6 +44,26 @@ function loadSettings() {
 
 function saveSettings(settings) {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+}
+
+// Study scope: "all" reviews every chapter's due/new items mixed together;
+// a chapter id (as a string) restricts the session to just that chapter.
+function loadScope() {
+  try {
+    return localStorage.getItem(SCOPE_KEY) || "all";
+  } catch (e) {
+    return "all";
+  }
+}
+
+function saveScope(scope) {
+  localStorage.setItem(SCOPE_KEY, scope);
+}
+
+function poolForScope(pool, scope) {
+  if (scope === "all") return pool;
+  const chapterId = parseInt(scope, 10);
+  return pool.filter((item) => getChapterForId(item.id) === chapterId);
 }
 
 // Tracks which item ids have already been introduced as "new" today, so the
@@ -162,6 +183,7 @@ function gradeItem(state, id, grade) {
 
 let appState = loadState();
 let appSettings = loadSettings();
+let appScope = loadScope();
 let sessionQueue = [];
 let sessionIndex = 0;
 let sessionResults = { natural: 0, awkward: 0, wrong: 0 };
@@ -180,14 +202,33 @@ function showScreen(name) {
   screens[name].classList.add("active");
 }
 
+function renderScopeOptions() {
+  const select = document.getElementById("select-scope");
+  if (select.options.length === 0) {
+    const allOption = document.createElement("option");
+    allOption.value = "all";
+    allOption.textContent = "All chapters (random)";
+    select.appendChild(allOption);
+    CHAPTERS.forEach((ch) => {
+      const opt = document.createElement("option");
+      opt.value = String(ch.id);
+      opt.textContent = ch.title;
+      select.appendChild(opt);
+    });
+  }
+  select.value = appScope;
+}
+
 function renderHome() {
-  const counts = countDueAndNew(GRAMMAR_POOL, appState, appSettings);
+  renderScopeOptions();
+  const scopedPool = poolForScope(GRAMMAR_POOL, appScope);
+  const counts = countDueAndNew(scopedPool, appState, appSettings);
   document.getElementById("stat-due").textContent = counts.due;
   document.getElementById("stat-new").textContent = counts.newToShow;
   document.getElementById("stat-total").textContent = `${counts.notReviewed}/${counts.total}`;
 
   const startBtn = document.getElementById("btn-start-session");
-  const queuePreview = buildQueue(GRAMMAR_POOL, appState, appSettings);
+  const queuePreview = buildQueue(scopedPool, appState, appSettings);
   if (queuePreview.length === 0) {
     startBtn.disabled = true;
     startBtn.textContent = "All caught up ✓";
@@ -260,7 +301,7 @@ function revealVocab() {
 }
 
 function startSession() {
-  sessionQueue = buildQueue(GRAMMAR_POOL, appState, appSettings);
+  sessionQueue = buildQueue(poolForScope(GRAMMAR_POOL, appScope), appState, appSettings);
   sessionIndex = 0;
   sessionResults = { natural: 0, awkward: 0, wrong: 0 };
   if (sessionQueue.length === 0) {
@@ -331,10 +372,11 @@ function renderBrowse() {
       statusLabel = `next ${s.due}`;
       statusClass = "status-scheduled";
     }
+    const chapterNum = getChapterForId(item.id);
     return `<div class="browse-row">
         <div>
           <div class="browse-title">${item.title}</div>
-          <div class="browse-meaning">${item.meaning}</div>
+          <div class="browse-meaning">Chapter ${chapterNum} — ${item.meaning}</div>
         </div>
         <span class="browse-status ${statusClass}">${statusLabel}</span>
       </div>`;
@@ -367,6 +409,11 @@ function resetProgress() {
 // ---- Wire up events ----
 
 document.getElementById("btn-start-session").addEventListener("click", startSession);
+document.getElementById("select-scope").addEventListener("change", (e) => {
+  appScope = e.target.value;
+  saveScope(appScope);
+  renderHome();
+});
 document.getElementById("btn-browse").addEventListener("click", () => {
   renderBrowse();
   showScreen("browse");
