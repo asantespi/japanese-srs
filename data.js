@@ -1149,6 +1149,111 @@ const GRAMMAR_POOL = [
     { jp: "別途", reading: "べっと", en: "separately" }
   ],
   note: "Dressed-up 'business suit' versions of casual connectors — use in formal writing and speeches."
+},
+{
+  id: 77, title: "〜のなんのって", meaning: "so extremely ~ that I can't even describe it (spoken exaggeration)",
+  examples: [
+    { jp: "虫歯を抜いたら、痛いのなんのって。何も食べられないんだ。", furigana: [["虫歯","むしば"],["抜いた","ぬいた"]], en: "I had a cavity pulled, and it hurt so much I can't even describe it. I can't eat anything." },
+    { jp: "隣の部屋の人がテレビでサッカー見ていて、うるさいのなんのって、全然寝られなかったんだ。", furigana: [["隣","となり"],["全然","ぜんぜん"]], en: "The person next door was watching soccer on TV, and it was so noisy I can't even describe it, I couldn't sleep at all." }
+  ],
+  prompt: "Say casually: \"That movie was so scary I can't even describe it.\"",
+  modelAnswer: "あの映画は怖いのなんのって。",
+  modelFurigana: [["映画","えいが"],["怖い","こわい"]],
+  vocab: [
+    { jp: "映画", reading: "えいが", en: "movie" },
+    { jp: "怖い", reading: "こわい", en: "scary" }
+  ],
+  note: "Feeling too big for words. な-adjectives take な (静かなのなんのって); nouns drop だ."
+},
+{
+  id: 78, title: "〜たて", meaning: "freshly / just done (right after being made or completed)",
+  examples: [
+    { jp: "炊きたてのご飯ってほんといいね。何杯でも食べられそう。", furigana: [["炊きたて","たきたて"],["何杯","なんばい"]], en: "Freshly cooked rice is really good, isn't it. I feel like I could eat any number of bowls." },
+    { jp: "このベンチ、ペンキぬりたてだって。", furigana: [], en: "This bench is apparently freshly painted." }
+  ],
+  prompt: "Say: \"I love freshly baked bread.\"",
+  modelAnswer: "焼きたてのパンが大好きだ。",
+  modelFurigana: [["焼きたて","やきたて"],["大好き","だいすき"]],
+  vocab: [
+    { jp: "焼く", reading: "やく", en: "to bake / grill" },
+    { jp: "パン", reading: "パン", en: "bread" }
+  ],
+  note: "Verb stem + たて; common with 作る・できる・焼く・炊く・なる."
+},
+{
+  id: 79, title: "〜ったら／ってば", meaning: "seriously, [X]... (exasperated complaint about someone/something familiar)",
+  examples: [
+    { jp: "うちの犬ったら、私が浴衣着てたら、よその人と間違えてほえたのよ。", furigana: [["浴衣","ゆかた"]], en: "My dog, seriously, when I was wearing a yukata, it barked at me mistaking me for a stranger." },
+    { jp: "お母さんってば、いつも勝手に私の部屋に入るのよ。", furigana: [], en: "My mom, seriously, always comes into my room without asking." }
+  ],
+  prompt: "Say: \"My little brother, seriously, never cleans his room.\"",
+  modelAnswer: "うちの弟ったら、全然部屋を掃除しないのよ。",
+  modelFurigana: [["弟","おとうと"],["全然","ぜんぜん"],["部屋","へや"],["掃除","そうじ"]],
+  vocab: [
+    { jp: "弟", reading: "おとうと", en: "younger brother" },
+    { jp: "掃除する", reading: "そうじする", en: "to clean" }
+  ],
+  note: "Name the person/thing, sigh with ったら, then complain. Only for familiar people or things; ってば is the same feeling."
+},
+{
+  id: 80, title: "〜ようになっている", meaning: "is set up / designed so that X automatically happens",
+  examples: [
+    { jp: "ほこりが鼻に入るとくしゃみが出て、自然にそれを外へ出すようになっています。", furigana: [["鼻","はな"],["自然","しぜん"]], en: "When dust gets into your nose, you sneeze, and it's set up so that naturally pushes it out." },
+    { jp: "このライターは着火部分を固くして、子どもがいたずらしても火がつかないようになっています。", furigana: [["着火","ちゃっか"],["固く","かたく"]], en: "This lighter has a hardened ignition part, so it's set up so that even if a child fiddles with it, it won't light." }
+  ],
+  prompt: "Say: \"This door is set up to lock automatically when it closes.\"",
+  modelAnswer: "このドアは閉めると自動的にかぎがかかるようになっている。",
+  modelFurigana: [["自動的","じどうてき"]],
+  vocab: [
+    { jp: "自動的", reading: "じどうてき", en: "automatic" },
+    { jp: "かぎがかかる", reading: "かぎがかかる", en: "to lock" }
+  ],
+  note: "Describes how a machine, system or body mechanism is built to work — not a change over time."
+},
+{
+  id: 81, title: "〜わけだ", meaning: "no wonder / so that's why (understanding the reason)",
+  examples: [
+    { jp: "このゲーム、人気があるわけだよ。やってみたら、キャラクターも個性的だし、ストーリーも独創的だし、最高だよ。", furigana: [["人気","にんき"],["個性的","こせいてき"],["独創的","どくそうてき"],["最高","さいこう"]], en: "No wonder this game is popular. When I tried it, the characters are unique and the story is original, it's the best." },
+    { jp: "この道、カーブが多くて見通しが悪いし、街灯は少ないし…。事故が多いわけだ。", furigana: [["見通し","みとおし"],["街灯","がいとう"],["事故","じこ"]], en: "This road has a lot of curves and poor visibility, and there are few streetlights... No wonder there are a lot of accidents." }
+  ],
+  prompt: "Say: \"He worked all night — no wonder he's tired.\"",
+  modelAnswer: "一晩中働いていたのか。疲れているわけだ。",
+  modelFurigana: [["一晩中","ひとばんじゅう"],["働いて","はたらいて"],["疲れて","つかれて"]],
+  vocab: [
+    { jp: "一晩中", reading: "ひとばんじゅう", en: "all night" },
+    { jp: "疲れる", reading: "つかれる", en: "to be tired" }
+  ],
+  note: "An 'aha' — you learn the reason behind something you'd noticed. If the reason is unknown, use どういうわけか."
+},
+{
+  id: 82, title: "〜どころか", meaning: "far from ~ (it's the opposite, or much more extreme)",
+  examples: [
+    { jp: "ううん。雨に降られて、暑いどころかすごく寒くて、風邪ひきそうだったよ。", furigana: [["風邪","かぜ"]], en: "No. It rained on me, and far from hot, it was really cold, I thought I might catch a cold." },
+    { jp: "運動するとおなかがすくでしょ？やせるどころか体重増えちゃった。", furigana: [], en: "When you exercise, you get hungry, right? Far from losing weight, I actually gained weight." }
+  ],
+  prompt: "Say: \"Far from being cheap, it was actually very expensive.\"",
+  modelAnswer: "安いどころか、とても高かった。",
+  modelFurigana: [["安い","やすい"],["高かった","たかかった"]],
+  vocab: [
+    { jp: "安い", reading: "やすい", en: "cheap" },
+    { jp: "高い", reading: "たかい", en: "expensive" }
+  ],
+  note: "Denies A and states the opposite — or something far more extreme (漢字どころかひらがなも…). A is often what the listener just said."
+},
+{
+  id: 83, title: "〜ようでは／ようじゃ", meaning: "if you keep being/doing ~, it won't turn out well (critical warning)",
+  examples: [
+    { jp: "締め切りを守れないようじゃ、漫画家としてやっていけないよ。", furigana: [["締め切り","しめきり"],["漫画家","まんがか"]], en: "If you can't keep deadlines, you won't be able to make it as a manga artist." },
+    { jp: "おしゃれに全然気を使わないようじゃ、社会人としてまずいんじゃない？", furigana: [["全然","ぜんぜん"],["社会人","しゃかいじん"]], en: "If you don't pay any attention to your appearance at all, isn't that bad as a working adult?" }
+  ],
+  prompt: "Say: \"If you can't even greet people, you can't work in customer service.\"",
+  modelAnswer: "挨拶もできないようじゃ、接客の仕事はできないよ。",
+  modelFurigana: [["挨拶","あいさつ"],["接客","せっきゃく"],["仕事","しごと"]],
+  vocab: [
+    { jp: "挨拶", reading: "あいさつ", en: "greeting" },
+    { jp: "接客", reading: "せっきゃく", en: "customer service" }
+  ],
+  note: "Criticizes the current state; followed by a negative judgment about the outcome."
 }
 ];
 
@@ -1165,7 +1270,8 @@ const CHAPTERS = [
   { id: 5, title: "Chapter 5 — Emotion, exception & attempt" },
   { id: 6, title: "Chapter 6 — Regret, defiance & comparison" },
   { id: 7, title: "Chapter 7 — Perspective & gradual change" },
-  { id: 8, title: "Chapter 8 — Business keigo" }
+  { id: 8, title: "Chapter 8 — Business keigo" },
+  { id: 9, title: "Chapter 9 — Colloquial emphasis & reasoning" }
 ];
 
 const CHAPTER_RANGES = [
@@ -1176,7 +1282,8 @@ const CHAPTER_RANGES = [
   { chapter: 5, min: 36, max: 46 },
   { chapter: 6, min: 47, max: 58 },
   { chapter: 7, min: 59, max: 71 },
-  { chapter: 8, min: 72, max: 76 }
+  { chapter: 8, min: 72, max: 76 },
+  { chapter: 9, min: 77, max: 83 }
 ];
 
 function getChapterForId(id) {
