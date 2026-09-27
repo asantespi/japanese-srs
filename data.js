@@ -1254,6 +1254,111 @@ const GRAMMAR_POOL = [
     { jp: "接客", reading: "せっきゃく", en: "customer service" }
   ],
   note: "Criticizes the current state; followed by a negative judgment about the outcome."
+},
+{
+  id: 84, title: "〜ぶる", meaning: "to act like / pretend to be (something you're not)",
+  examples: [
+    { jp: "昔ぼくは好きな女の子の前で悪ぶっていた。本当は、好きだって言う勇気がなかっただけなんだ。", furigana: [["勇気","ゆうき"]], en: "Back then I used to act like a bad guy in front of the girl I liked. Really, I just didn't have the courage to say I liked her." },
+    { jp: "あの人は大企業の社長なのに少しも偉ぶったところがない。", furigana: [["大企業","だいきぎょう"],["偉ぶった","えらぶった"]], en: "That person is the president of a major company, but doesn't act important at all." }
+  ],
+  prompt: "Say: \"That kid acts like a good student in front of the teacher, but doesn't study at all.\"",
+  modelAnswer: "あの子は先生の前でいい子ぶっているが、全然勉強しない。",
+  modelFurigana: [["先生","せんせい"],["全然","ぜんぜん"],["勉強","べんきょう"]],
+  vocab: [
+    { jp: "いい子ぶる", reading: "いいこぶる", en: "to act like a good kid" },
+    { jp: "勉強する", reading: "べんきょうする", en: "to study" }
+  ],
+  note: "N／なA／いA(drop い) + ぶる, conjugates like a Group I verb (ぶらない／ぶって). Common with 優等生・悪者・大人・上品・いい子・偉い."
+},
+{
+  id: 85, title: "〜に限って", meaning: "it's always ~ who... (critical pattern); or of all times, bad luck when ~",
+  examples: [
+    { jp: "よく知らないやつに限って、偉そうなことを言う。", furigana: [], en: "It's always the guys who don't really know anything who talk like they're important." },
+    { jp: "急いでいるときに限って、バスが来ない。", furigana: [], en: "Of all times, it's exactly when I'm in a hurry that the bus doesn't come." }
+  ],
+  prompt: "Say: \"Of all days, it's exactly on the day I forget my umbrella that it rains.\"",
+  modelAnswer: "傘を忘れた日に限って、雨が降る。",
+  modelFurigana: [["傘","かさ"],["忘れた","わすれた"],["雨","あめ"],["降る","ふる"]],
+  vocab: [
+    { jp: "傘", reading: "かさ", en: "umbrella" },
+    { jp: "雨が降る", reading: "あめがふる", en: "to rain" }
+  ],
+  note: "Two uses: criticizing a type of person (Nに限って、いつも〜) or complaining about unlucky timing (時に限って、運悪く〜)."
+},
+{
+  id: 86, title: "〜ことだ", meaning: "you should ~ / the best thing to do is ~ (advice)",
+  examples: [
+    { jp: "仕事でも何でも自分一人で悩まないで、誰かに相談することですよ。", furigana: [["誰か","だれか"],["相談","そうだん"]], en: "Whether it's work or anything else, you shouldn't worry about it alone — you should talk to someone about it." },
+    { jp: "カビを防ぐには毎日部屋の換気をすることです。", furigana: [["換気","かんき"]], en: "To prevent mold, you should ventilate the room every day." }
+  ],
+  prompt: "Say: \"If you want to improve your Japanese, you should watch Japanese dramas every day.\"",
+  modelAnswer: "日本語を上達させたいなら、毎日日本語のドラマを見ることだ。",
+  modelFurigana: [["日本語","にほんご"],["上達","じょうたつ"],["毎日","まいにち"]],
+  vocab: [
+    { jp: "上達する", reading: "じょうたつする", en: "to improve (a skill)" },
+    { jp: "ドラマを見る", reading: "ドラマをみる", en: "to watch a drama" }
+  ],
+  note: "V-る／V-ない + ことだ; a wise-elder style piece of advice, mostly used for giving recommendations."
+},
+{
+  id: 87, title: "N+という+N", meaning: "every single N, without exception",
+  examples: [
+    { jp: "今回の森林火災で、この辺の木という木は、1本残らず燃えてしまった。", furigana: [["森林火災","しんりんかさい"],["辺","へん"],["残らず","のこらず"],["燃えて","もえて"]], en: "In this forest fire, every single tree in this area, without exception, burned down." },
+    { jp: "田中監督はこの映画で、今年の映画関連の賞という賞を独占した。", furigana: [["田中監督","たなかかんとく"],["映画関連","えいがかんれん"],["賞","しょう"],["独占した","どくせんした"]], en: "With this film, Director Tanaka swept every single film-related award there was this year." }
+  ],
+  prompt: "Say: \"Every single shop on that shopping street has closed down.\"",
+  modelAnswer: "あの商店街の店という店が閉店してしまった。",
+  modelFurigana: [["商店街","しょうてんがい"],["閉店","へいてん"]],
+  vocab: [
+    { jp: "商店街", reading: "しょうてんがい", en: "shopping street" },
+    { jp: "閉店する", reading: "へいてんする", en: "to close down (a shop)" }
+  ],
+  note: "Repeats the same noun with という in between (N という N) to mean 'every single N, no exceptions.'"
+},
+{
+  id: 88, title: "〜ところだった", meaning: "almost happened, but didn't (a close call)",
+  examples: [
+    { jp: "今朝は30分も寝坊しちゃって、危うく遅刻するところだったよ。", furigana: [["寝坊","ねぼう"],["危うく","あやうく"],["遅刻","ちこく"]], en: "This morning I overslept by a whole 30 minutes, and I almost ended up being late." },
+    { jp: "マンガに夢中になっていて、友達が教えてくれなかったら、乗り過ごすところだった。", furigana: [["夢中","むちゅう"],["乗り過ごす","のりすごす"]], en: "I was so absorbed in the manga that if my friend hadn't told me, I would have almost missed my stop." }
+  ],
+  prompt: "Say: \"I was so absorbed in my phone that I almost missed my stop.\"",
+  modelAnswer: "スマホに夢中になっていて、危うく降りる駅を乗り過ごすところだった。",
+  modelFurigana: [["夢中","むちゅう"],["危うく","あやうく"],["駅","えき"],["乗り過ごす","のりすごす"]],
+  vocab: [
+    { jp: "夢中になる", reading: "むちゅうになる", en: "to be absorbed in" },
+    { jp: "乗り過ごす", reading: "のりすごす", en: "to miss one's stop" }
+  ],
+  note: "V-る + ところだった; often with 危うく, or with 〜なければならない／〜ざるを得ない, to describe a narrowly avoided outcome."
+},
+{
+  id: 89, title: "〜くらいなら", meaning: "if it means doing X, I'd rather do Y instead (even if Y isn't great either)",
+  examples: [
+    { jp: "15,000円も払うくらいなら、新しいのを買ったほうがいいね。", furigana: [["払う","はらう"]], en: "If it means paying as much as 15,000 yen, you'd be better off buying a new one." },
+    { jp: "お金を払って電車に乗るくらいなら、時間がかかっても自転車で行ったほうがいい。", furigana: [["払って","はらって"]], en: "Rather than paying money to ride the train, it's better to go by bicycle even if it takes longer." }
+  ],
+  prompt: "Say: \"If it means waiting an hour in line, I'd rather go to a different restaurant.\"",
+  modelAnswer: "1時間並ぶくらいなら、ほかのレストランに行ったほうがいい。",
+  modelFurigana: [["並ぶ","ならぶ"]],
+  vocab: [
+    { jp: "並ぶ", reading: "ならぶ", en: "to wait in line" },
+    { jp: "ほかの〜", reading: "ほかの〜", en: "another / a different ~" }
+  ],
+  note: "V-る + くらいなら; can also express regret, as in 'I should've done the other thing instead.'"
+},
+{
+  id: 90, title: "〜まし", meaning: "not great, but better than the alternative (less bad)",
+  examples: [
+    { jp: "暑いより、寒いほうがましですよ。寒いときには服を着ればいいんだから。", furigana: [], en: "Cold is still better than hot. When it's cold, you can just put on more clothes." },
+    { jp: "残業が多くて、嫌になっちゃいますよ。仕事があるだけましだと思わなきゃいけないんだぞ。", furigana: [["残業","ざんぎょう"],["嫌","いや"]], en: "There's so much overtime, I'm getting sick of it. You have to think it's better to at least have a job." }
+  ],
+  prompt: "Say: \"Being scolded is still better than being ignored.\"",
+  modelAnswer: "無視されるより、しかられるほうがましだ。",
+  modelFurigana: [["無視","むし"]],
+  vocab: [
+    { jp: "無視する", reading: "むしする", en: "to ignore" },
+    { jp: "しかる", reading: "しかる", en: "to scold" }
+  ],
+  note: "Often paired with 〜ほうが・〜より・〜だけ・まだ・ずっと; not good, just less bad than the alternative."
 }
 ];
 
@@ -1283,7 +1388,7 @@ const CHAPTER_RANGES = [
   { chapter: 6, min: 47, max: 58 },
   { chapter: 7, min: 59, max: 71 },
   { chapter: 8, min: 72, max: 76 },
-  { chapter: 9, min: 77, max: 83 }
+  { chapter: 9, min: 77, max: 90 }
 ];
 
 function getChapterForId(id) {
